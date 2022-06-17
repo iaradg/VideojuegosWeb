@@ -1,0 +1,34 @@
+[
+    {
+     "nombre": "Shell Shockers",
+     "descripcion": "Shell Shockers es un Shooter en Primera Persona multijugador al estilo .io en el que controlas a huevos armados hasta los dientes. Hay tres modos de juego en línea y tu objetivo es destrozar a todos tus oponentes con plomo y bombas. ¡El juego de combate entre huevos definitivo!",
+     "portada": "https://addons.mozilla.org/user-media/previews/thumbs/249/249278.jpg?modified=1622136481",
+     "url": "https://shellshock.io/",
+     "vista": "/shell-shockers",
+     "id": "1"
+    },
+    {
+     "nombre": "Google PacMan",
+     "descripcion": "Google PacMan es un juego pacman extraordinario . Puedes probarlo aquí . Google es el creador de Google PacMan. Este trepidante juego pacman utiliza HTML5 para funcionar sin problemas en todos los navegadores modernos. ¿Te ha gustado jugar a este juego clásicos? Entonces comprueba nuestros otros juegos de pacman o Tapman y PacMan FPS.",
+     "portada": "https://www.google.com/logos/2010/pacman10-hp.png",
+     "url": "https://www.google.com/logos/2010/pacman10-i.html",
+     "vista": "/google-pacman",
+     "id": "2"
+    },
+    {
+     "nombre": "El Gran Truco Argentino",
+     "descripcion": "Juego de Truco Argentino Online, el único con las reglas oficiales y exactas de nuetro truco. Jugá de 2, de 4, o de 6. Campeonatos de Truco Free con los mejores del Ranking",
+     "portada": "https://cdn2.cloudymedia.com/img/1024x1024.png",
+     "url": "https://trucogame.com/",
+     "vista": "",
+     "id": "3"
+    },
+    {
+     "nombre": "Slither.io",
+     "descripcion": "Slither.io es un videojuego de navegador masivo en línea publicado el 25 de marzo de 2016 por la compañía Lowtech Studios.​ La perspectiva del juego es cenital, es decir, un ángulo de cámara que muestra al jugador el área circundante desde arriba.",
+     "portada": "https://i.ytimg.com/vi/jBcDBwkV0b8/maxresdefault.jpg",
+     "url": "http://slither.io",
+     "vista": "",
+     "id": "4"
+    }
+]
