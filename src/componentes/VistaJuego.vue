@@ -1,7 +1,10 @@
-<template lang="html">
+<template>
 
-  <section class="src-componentes-slither-io">
+  <section class="src-componentes-vista-juego">
     <div class="jumbotron">
+
+      <h1>entrando a componente VISTA JUEGO {{idRecibida}}</h1>
+
       <div class="container-fluid contenedorGeneral">
         <h1><label>{{juego.nombre}}</label></h1>
         <hr>
@@ -51,6 +54,7 @@
             </div>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -59,29 +63,28 @@
 <script lang="js">
 
   export default  {
-    name: 'src-componentes-slither-io',
-    props: [],
+    name: 'src-componentes-vista-juego',
+    props: ['idRecibida'],
     mounted () {
-      this.obtenerJuegoById(4)
+      this.obtenerJuegoById() 
     },
     data () {
       return {
         url : 'https://6286f9227864d2883e7c4e53.mockapi.io/listaJuegos/',
-        juego: {
-        }
+        juego: {}
       }
     },
     methods: {
-      async obtenerJuegoById(id){
+      async obtenerJuegoById(){
         try {
-        let {data:juego} = await this.axios.get(this.url+id)
+        let {data:juego} = await this.axios.get(this.url+this.idRecibida)
         console.log(juego)
         this.juego = juego;
         }
         catch(error) {
           console.error('Error en goToGame', error.message)
         }
-        },
+      },
       goToGame(){
         window.open(this.juego.url, '_blank');
       }

@@ -14,13 +14,13 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="w-50 portada" :src="juego.portada" alt="Slide1">
+              <img class="w-50 portada" :src="juego.portada1" alt="Slide1">
             </div>
             <div class="carousel-item">
-              <img class="w-50 portada" :src="juego.portada" alt="Slide2">
+              <img class="w-50 portada" :src="juego.portada2" alt="Slide2">
             </div>
             <div class="carousel-item">
-              <img class="w-50 portada" :src="juego.portada" alt="Slide3">
+              <img class="w-50 portada" :src="juego.portada3" alt="Slide3">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -75,14 +75,14 @@
     },
     methods: {
       async obtenerJuegoById(id){
-      try {
-      let {data:juego} = await this.axios.get(this.url+id)
-      console.log(juego)
-      this.juego = juego;
-      }
-      catch(error) {
-        console.error('Error en goToGame', error.message)
-      }
+        try {
+        let {data:juego} = await this.axios.get(this.url+id)
+        console.log(juego)
+        this.juego = juego;
+        }
+        catch(error) {
+          console.error('Error en goToGame', error.message)
+        }
       },
       goToGame(){
         window.open(this.juego.url, '_blank');

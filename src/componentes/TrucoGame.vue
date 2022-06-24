@@ -13,13 +13,13 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="w-50 portada" :src="juego.portada" alt="Slide1">
+              <img class="w-50 portada" :src="juego.portada1" alt="Slide1">
             </div>
             <div class="carousel-item">
-              <img class="w-50 portada" :src="juego.portada" alt="Slide2">
+              <img class="w-50 portada" :src="juego.portada2" alt="Slide2">
             </div>
             <div class="carousel-item">
-              <img class="w-50 portada" :src="juego.portada" alt="Slide3">
+              <img class="w-50 portada" :src="juego.portada3" alt="Slide3">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
