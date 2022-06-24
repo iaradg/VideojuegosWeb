@@ -12,12 +12,12 @@
         <input type="text" class="form-control bg-dark" v-model="criterioDeBusquedaNombre" placeholder="Ingrese el nombre del juego que desee buscar">
         <div class="galeria">
           <article class="card" v-for="(juegoRecorrido,index) in this.juegosFiltrados" :key="index" >         
-            <p v-show="false">{{ idActual }}</p>
             <div class="button-container">
               <div v-if="(juegoRecorrido.vista !== '')">
-                <a :href="juegoRecorrido.vista">
+                <!-- <a :href="juegoRecorrido.vista">
                   <img class="portada" :src="juegoRecorrido.portada1" :alt="juegoRecorrido.nombre">
-                </a>
+                </a> -->
+                <img class="portada" :src="juegoRecorrido.portada1" :alt="juegoRecorrido.nombre" @click="accederVista(juegoRecorrido.id)">
               </div>
               <button class="btn btn-sm ml-3 mt-3" @click="borrarJuego(juegoRecorrido.id)">x</button> 
             </div>
@@ -61,6 +61,7 @@
       /*         API REST : GET         */
       /* ------------------------------ */
       async cargarJuegos() {
+        this.idActual = 0;
         try {
           let {data:juegosApi} = await this.axios(this.url)
           for (var i = 0; i < (juegosApi.length); i++){
@@ -123,7 +124,10 @@
       quitarAcentos(cadena){
         const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
         return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
-      },                  
+      },              
+      accederVista(id){
+        this.idActual = id;
+      }    
     },
     computed: {
       juegosFiltrados() {
@@ -203,7 +207,7 @@
     width: 15.5rem;
   }
 
-  .portada:hover .a:hover{
+  .portada:hover{
     height: 10.5rem;
     width: 15.5rem;
   }

@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-true navbar-dark bg-dark">
     
     <router-link to="/">
-      <a class="navbar-brand" href="#">Inicio</a>
+      <a class="navbar-brand" @click="refrescarId()">Inicio</a>
     </router-link>
     
     <div class="dropdown">
@@ -76,7 +76,6 @@
       }
     },
     methods: {
-
     },
     computed: {
 

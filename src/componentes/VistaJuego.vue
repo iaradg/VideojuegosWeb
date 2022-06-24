@@ -35,7 +35,6 @@
           </a>
         </div>
         <hr>
-        <!-- <img class="portada" :src="juego.portada" :alt="juego.nombre" :style="{'border-radius': '20px', 'margin-left':'20'}"> -->
         <div class="container-fluid">
           <h5>DESCRIPCION</h5>
           <p>{{ juego.descripcion }}</p>
@@ -78,8 +77,7 @@
       async obtenerJuegoById(){
         try {
         let {data:juego} = await this.axios.get(this.url+this.idRecibida)
-        console.log(juego)
-        this.juego = juego;
+        this.juego = {...juego};
         }
         catch(error) {
           console.error('Error en goToGame', error.message)
