@@ -5,7 +5,34 @@
       <div>
         <h2>VIDEOJUEGOS WEB DISPONIBLES</h2>
         <p>Dentro de esta sección podrás visualizar la lista de videojuegos disponibles dentro de la página. Selecciona un juego de tu gusto, al clickearlo te redireccionará hacia una página con la información del juego, y dentro de la misma podrás presionar el botón IR AL JUEGO para comenzar a jugar</p><hr>
-        <button class="btn btn-info mb-3" @click="postJuego()">Agregar Juego</button>
+        <button class="btn btn-info mb-3" @click="mostrar=!mostrar">Agregar Juego</button>
+        <div v-show="mostrar"> 
+          <Formulario />
+          <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="formularioJuegoNuevo" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="formularioJuegoNuevo">¿Te gustaria que haya mas juegos? Contanos cual!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                      ACA VA EL FORM
+                      ACA VA EL FORM 
+                      <Formulario />
+                      ACA VA EL FORM 
+                      ACA VA EL FORM
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+              
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+            </div>
+          </div>-->
+        </div>
       </div>
       
       <div class="container-fluid">
@@ -14,9 +41,6 @@
           <article class="card" v-for="(juegoRecorrido,index) in this.juegosFiltrados" :key="index" >         
             <div class="button-container">
               <div v-if="(juegoRecorrido.vista !== '')">
-                <!-- <a :href="juegoRecorrido.vista">
-                  <img class="portada" :src="juegoRecorrido.portada1" :alt="juegoRecorrido.nombre">
-                </a> -->
                 <img class="portada" :src="juegoRecorrido.portada1" :alt="juegoRecorrido.nombre" @click="accederVista(juegoRecorrido.id)">
               </div>
               <button class="btn btn-sm ml-3 mt-3" @click="borrarJuego(juegoRecorrido.id)">x</button> 
@@ -37,6 +61,8 @@
 
 <script>
   import VistaJuego from './VistaJuego.vue'
+  // import Modal      from './Modal.vue'
+  import Formulario from './Formulario'
 
   export default  {
     name: 'src-componentes-inicio',
@@ -45,7 +71,9 @@
       this.cargarJuegos()
     },
     components:{
-      VistaJuego
+      VistaJuego,
+      //Modal,
+      Formulario,
     },
     data () {
       return {
@@ -54,6 +82,7 @@
         ],
         criterioDeBusquedaNombre:   '',
         idActual: 0,
+        mostrar: false,
       }
     },
     methods: {
@@ -61,6 +90,7 @@
       /*         API REST : GET         */
       /* ------------------------------ */
       async cargarJuegos() {
+        this.mostrar = false;
         this.idActual = 0;
         try {
           let {data:juegosApi} = await this.axios(this.url)
@@ -74,30 +104,6 @@
       },
       cadenaIncluye(cadena1,cadena2){
         return this.cadenaLimpia(cadena1).includes(this.cadenaLimpia(cadena2))
-      },
-      /* ------------------------------ */
-      /*        API REST : POST         */
-      /* ------------------------------ */
-      async postJuego() {
-        let juegoNew = {
-          nombre: '',
-          descripcion: '',
-          portada: '',
-          url: '',
-          vista: ''
-        }
-        if (juegoNew.nombre == ''){
-          juegoNew.portada = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Fondo_Negro.jpg/707px-Fondo_Negro.jpg';
-        }
-
-        try {
-          let {data:juego} = await this.axios.post(this.url, juegoNew, {'content-type':'application/json'} )
-          //this.getUsuarios()
-          this.juegos.push(juego)
-        }
-        catch(error) {
-          console.error('Error en postJuego', error.message)
-        }
       },
       /* ------------------------------ */
       /*       API REST : DELETE        */

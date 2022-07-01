@@ -1,42 +1,42 @@
 [
     {
-     "nombre": "Shell Shockers",
-     "descripcion": "Shell Shockers es un Shooter en Primera Persona multijugador al estilo .io en el que controlas a huevos armados hasta los dientes. Hay tres modos de juego en línea y tu objetivo es destrozar a todos tus oponentes con plomo y bombas. ¡El juego de combate entre huevos definitivo!",
-     "portada1": "https://addons.mozilla.org/user-media/previews/thumbs/249/249278.jpg?modified=1622136481",
-     "portada2": "https://storage.googleapis.com/replit/images/1651793762649_5429a0854fc61b0839826b12cc41e661.jpeg",
-     "portada3": "https://i1.silvergames.com/screenshots/shell-shockers/fight.jpg ",
-     "url": "https://shellshock.io/",
-     "vista": "/shell-shockers",
-     "id": "1"
+        "nombre": "Shell Shockers",
+        "descripcion": "Shell Shockers es un Shooter en Primera Persona multijugador al estilo .io en el que controlas a huevos armados hasta los dientes. Hay tres modos de juego en línea y tu objetivo es destrozar a todos tus oponentes con plomo y bombas. ¡El juego de combate entre huevos definitivo!",
+        "portada1": "https://addons.mozilla.org/user-media/previews/thumbs/249/249278.jpg?modified=1622136481",
+        "portada2": "https://storage.googleapis.com/replit/images/1651793762649_5429a0854fc61b0839826b12cc41e661.jpeg",
+        "portada3": "https://i1.silvergames.com/screenshots/shell-shockers/fight.jpg ",
+        "url": "https://shellshock.io/",
+        "id": "1",
+        "cantMG": "0"
     },
     {
-     "nombre": "Google PacMan",
-     "descripcion": "Google PacMan es un juego pacman extraordinario . Puedes probarlo aquí . Google es el creador de Google PacMan. Este trepidante juego pacman utiliza HTML5 para funcionar sin problemas en todos los navegadores modernos. ¿Te ha gustado jugar a este juego clásicos? Entonces comprueba nuestros otros juegos de pacman o Tapman y PacMan FPS.",
-     "portada1":  "https://www.google.com/logos/2010/pacman10-hp.png",
-     "portada2": "https://culturageek.com.ar/wp-content/uploads/2017/03/culturageek.com_.ar-Pac-man-Google-Maps-2.jpg",
-     "portada3": "https://media.sanjuan8.com/p/e2b14082d1d7ca6f3833c275ee603a83/adjuntos/303/imagenes/006/078/0006078791/1200x675/smart/pac-man-llego-al-doodle.png",
-     "url": "https://www.google.com/logos/2010/pacman10-i.html",
-     "vista": "/google-pacman",
-     "id": "2"
+        "nombre": "Google PacMan",
+        "descripcion": "Google PacMan es un juego pacman extraordinario . Puedes probarlo aquí . Google es el creador de Google PacMan. Este trepidante juego pacman utiliza HTML5 para funcionar sin problemas en todos los navegadores modernos. ¿Te ha gustado jugar a este juego clásicos? Entonces comprueba nuestros otros juegos de pacman o Tapman y PacMan FPS.",
+        "portada1": "https://www.google.com/logos/2010/pacman10-hp.png",
+        "portada2": "https://culturageek.com.ar/wp-content/uploads/2017/03/culturageek.com_.ar-Pac-man-Google-Maps-2.jpg",
+        "portada3": "https://media.sanjuan8.com/p/e2b14082d1d7ca6f3833c275ee603a83/adjuntos/303/imagenes/006/078/0006078791/1200x675/smart/pac-man-llego-al-doodle.png",
+        "url": "https://www.google.com/logos/2010/pacman10-i.html",
+        "id": "2",
+        "cantMG": "0"
     },
     {
-     "nombre": "El Gran Truco Argentino",
-     "descripcion": "Juego de Truco Argentino Online, el único con las reglas oficiales y exactas de nuetro truco. Jugá de 2, de 4, o de 6. Campeonatos de Truco Free con los mejores del Ranking",
-     "portada1": "https://cdn2.cloudymedia.com/img/1024x1024.png",
-     "portada2" : "https://buenavibra.es/wp-content/uploads/2017/01/unnamed-1.png",
-     "portada3" : "https://images.pagina12.com.ar/styles/focal_content_1200x1050/public/2021-12/299421-whatsapp-20image-202021-12-22-20at-2019-27-08.jpeg?itok=TwVqayZi",
-     "url": "https://trucogame.com/",
-     "vista": "/truco-game",
-     "id": "3"
+        "nombre": "El Gran Truco Argentino",
+        "descripcion": "Juego de Truco Argentino Online, el único con las reglas oficiales y exactas de nuetro truco. Jugá de 2, de 4, o de 6. Campeonatos de Truco Free con los mejores del Ranking",
+        "portada1": "https://cdn2.cloudymedia.com/img/1024x1024.png",
+        "portada2": "https://buenavibra.es/wp-content/uploads/2017/01/unnamed-1.png",
+        "portada3": "https://images.pagina12.com.ar/styles/focal_content_1200x1050/public/2021-12/299421-whatsapp-20image-202021-12-22-20at-2019-27-08.jpeg?itok=TwVqayZi",
+        "url": "https://trucogame.com/",
+        "id": "3",
+        "cantMG": "0"
     },
     {
-     "nombre": "Slither.io",
-     "descripcion": "Slither.io es un videojuego de navegador masivo en línea publicado el 25 de marzo de 2016 por la compañía Lowtech Studios.​ La perspectiva del juego es cenital, es decir, un ángulo de cámara que muestra al jugador el área circundante desde arriba.",
-     "portada1": "https://i.ytimg.com/vi/jBcDBwkV0b8/maxresdefault.jpg",
-     "portada2": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Slither.io_in_Chromium.png",
-     "portada3": "https://www.movilzona.es/app/uploads-movilzona.es/2016/05/slither-io.jpg",
-     "url": "http://slither.io",
-     "vista": "/slither-io",
-     "id": "4"
+        "nombre": "Slither.io",
+        "descripcion": "Slither.io es un videojuego de navegador masivo en línea publicado el 25 de marzo de 2016 por la compañía Lowtech Studios.​ La perspectiva del juego es cenital, es decir, un ángulo de cámara que muestra al jugador el área circundante desde arriba.",
+        "portada1": "https://i.ytimg.com/vi/jBcDBwkV0b8/maxresdefault.jpg",
+        "portada2": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Slither.io_in_Chromium.png",
+        "portada3": "https://www.movilzona.es/app/uploads-movilzona.es/2016/05/slither-io.jpg",
+        "url": "http://slither.io",
+        "id": "4",
+        "cantMG": "0"
     }
 ]

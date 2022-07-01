@@ -45,15 +45,15 @@
               </div>
               <div class="col-6">
                 <div class="alert alert-warning calificacion">
-                  <label>El juego seleccionado aún no ha sido calificado.</label>
-                  <button class="btn btn-warning" onclick="alert('En un futuro este botón, te derivará a un formulario, el cual te permitirá calificar el juego.')">CALIFICAR</button>
-                  <button class="btn btn-danger"  onclick="alert('En un futuro este botón, te derivará a un formulario, el cual te permitirá reportar el juego.')">REPORTAR</button>
+                  <button class="btn btn-warning mr-3" @click="calificar()">CALIFICAR</button>
+                  <label v-if="mgLocal == 0">El juego seleccionado aún no ha sido calificado.</label>
+                  <label v-else>Cantidad de Me Gusta: {{mgLocal}}</label>
+                  <!-- <button class="btn btn-danger"  onclick="alert('En un futuro este botón, te derivará a un formulario, el cual te permitirá reportar el juego.')">REPORTAR</button> -->
                 </div><br>
               </div>
             </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -70,7 +70,9 @@
     data () {
       return {
         url : 'https://6286f9227864d2883e7c4e53.mockapi.io/listaJuegos/',
-        juego: {}
+        juego: {},
+        mgLocal: 0,
+
       }
     },
     methods: {
@@ -78,6 +80,7 @@
         try {
         let {data:juego} = await this.axios.get(this.url+this.idRecibida)
         this.juego = {...juego};
+        this.mgLocal = this.juego.cantMG;
         }
         catch(error) {
           console.error('Error en goToGame', error.message)
@@ -85,12 +88,39 @@
       },
       goToGame(){
         window.open(this.juego.url, '_blank');
-      }
-    },
-    computed: {
+      },
+      async calificar(){
+        let gustaJuego = confirm("¿Te gusto el juego?");
+        if (gustaJuego) {
+          alert("Gracias por la calificacion!")
 
-    }
+          this.mgLocal++
+          
+          let juegoNew = {
+            nombre:        this.juego.nombre,
+            id :           this.idRecibida,
+            descripcion :  this.juego.descripcion,
+            portada1 :     this.juego.portada1,
+            portada2 :     this.juego.portada2,
+            portada3 :     this.juego.portada3,
+            cantMG :       this.mgLocal
+          }
+          try {
+          let {data:usuario} = await this.axios.put(this.url+this.idRecibida, juegoNew, {'content-type':'application/json'} )
+          console.log('AXIOS PUT usuario', usuario)
+        }
+        catch(error) {
+          console.error('Error en putUsuario', error.message)
+        }
+        }
+        else{
+          let valorRecibido = prompt("¿Que podemos mejorar?");
+          console.log("Comentario:",valorRecibido)
+        }
+      },
+    } 
 }
+
 
 
 </script>
