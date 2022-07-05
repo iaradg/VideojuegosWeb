@@ -60,8 +60,9 @@
 </template>
 
 <script>
-  import VistaJuego from './VistaJuego.vue'
+
   // import Modal      from './Modal.vue'
+  import VistaJuego from './VistaJuego.vue'
   import Formulario from './Formulario'
 
   export default  {

@@ -77,7 +77,7 @@
       <!--CAMPO Y VALIDACIONES-->
 
       <validate tag="div">
-        <label for="portada1">URL PORTADA</label>
+        <label for="portada1">URL PORTADA (opcional)</label>
         <input
           type="text"
           id="portada1"

@@ -1,23 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-//https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise
-//https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Using_promises
-// const delay = ms => new Promise((resolve, reject) => {
-//     if(typeof ms == 'number') {
-//         setTimeout(resolve, ms)
-//     }
-//     else {
-//         reject('ms no es del tipo number')
-//     }
-// })
-
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state : {
-        idActual: 0
+        // idActual: 0
     },
     actions : {
         // contarDown({commit},cant) {
@@ -40,18 +28,26 @@ export default new Vuex.Store({
         //         console.error(error)
         //     }                
         // }
-        refreshId({commit}){
-            //this.idActual = 0;
-            commit('refrescarId')
-        }        
+        // refreshId({commit}){
+        //     //this.idActual = 0;
+        //     commit('refrescarId')
+        // }        
+
+
+
+
+
+
+
+        
     },
     mutations : {
         // decrementar(state, cant) {
         //     console.warn('mutations -> decrementar', cant, new Date().toLocaleString())
         //     state.contador -= cant
         // },
-        refrescarId(state) {
-            state.idActual = 0;
-        }
+        // refrescarId(state) {
+        //     state.idActual = 0;
+        // }
     }
 })

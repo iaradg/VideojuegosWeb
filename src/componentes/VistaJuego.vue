@@ -48,7 +48,12 @@
                   <button class="btn btn-warning mr-3" @click="calificar()">CALIFICAR</button>
                   <label v-if="mgLocal == 0">El juego seleccionado aún no ha sido calificado.</label>
                   <label v-else>Cantidad de Me Gusta: {{mgLocal}}</label>
-                  <!-- <button class="btn btn-danger"  onclick="alert('En un futuro este botón, te derivará a un formulario, el cual te permitirá reportar el juego.')">REPORTAR</button> -->
+                  <!-- <label v-else>Cantidad de Me Gusta: {{mgLocal}} :style="{'color': funcion()}"</label> -->
+                  <!-- <button class="btn btn-danger"  onclick="alert('En un futuro este botón, te derivará a un formulario, el cual te permitirá reportar el juego.')">REPORTAR</button> 
+                  :style
+                  vuex
+                  filtro de datos por vista
+                  -->
                 </div><br>
               </div>
             </div>

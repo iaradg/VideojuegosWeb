@@ -60,7 +60,5 @@
 </script>
 
 <style scoped lang="css">
-  .src-componentes-modal {
 
-  }
 </style>

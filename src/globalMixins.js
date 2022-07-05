@@ -14,10 +14,10 @@ const miMixinGlobal = {
         //     console.warn('dispatch -> incrementar', new Date().toLocaleString())
         //     this.$store.dispatch('contarUp', 1)
         // }
-        refrescarId(){
-          //this.idActual = 0;
-          this.$store.dispatch('refreshId')
-        }
+        // refrescarId(){
+        //   // this.idActual = 0;
+        //   this.$store.dispatch('refreshId')
+        // }
     },
     computed: {
       // mostrarContadorVuex() {
