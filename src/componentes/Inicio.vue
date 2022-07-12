@@ -1,39 +1,14 @@
 <template>
 
   <section class="src-componentes-inicio">
-    <div v-if="idActual=='0'" class="jumbotron">
-      <div>
-        <h2>VIDEOJUEGOS WEB DISPONIBLES</h2>
-        <p>Dentro de esta sección podrás visualizar la lista de videojuegos disponibles dentro de la página. Selecciona un juego de tu gusto, al clickearlo te redireccionará hacia una página con la información del juego, y dentro de la misma podrás presionar el botón IR AL JUEGO para comenzar a jugar</p><hr>
-        <button class="btn btn-info mb-3" @click="mostrar=!mostrar">Agregar Juego</button>
-        <div v-show="mostrar"> 
-          <Formulario />
-          <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="formularioJuegoNuevo" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="formularioJuegoNuevo">¿Te gustaria que haya mas juegos? Contanos cual!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                      ACA VA EL FORM
-                      ACA VA EL FORM 
-                      <Formulario />
-                      ACA VA EL FORM 
-                      ACA VA EL FORM
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-              
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-              </div>
-            </div>
-          </div>-->
-        </div>
-      </div>
+
+    <div v-if="this.$store.state.juegoActual === null" class="jumbotron">
+      <h2>VIDEOJUEGOS WEB DISPONIBLES</h2>
+      <p>Dentro de esta sección podrás visualizar la lista de videojuegos disponibles dentro de la página. Selecciona un juego de tu gusto, al clickearlo te redireccionará hacia una página con la información del juego, y dentro de la misma podrás presionar el botón IR AL JUEGO para comenzar a jugar</p><hr>
+        
+      <button type="button" class="btn btn-info mb-3 ml-3" @click="cargarJuegos()">cargarJuegos</button>
+      
+      <Modal />
       
       <div class="container-fluid">
         <input type="text" class="form-control bg-dark" v-model="criterioDeBusquedaNombre" placeholder="Ingrese el nombre del juego que desee buscar">
@@ -41,7 +16,7 @@
           <article class="card" v-for="(juegoRecorrido,index) in this.juegosFiltrados" :key="index" >         
             <div class="button-container">
               <div v-if="(juegoRecorrido.vista !== '')">
-                <img class="portada" :src="juegoRecorrido.portada1" :alt="juegoRecorrido.nombre" @click="accederVista(juegoRecorrido.id)">
+                <img class="portada" :src="juegoRecorrido.portada1" :alt="juegoRecorrido.nombre" @click="accederVista(juegoRecorrido)">
               </div>
               <button class="btn btn-sm ml-3 mt-3" @click="borrarJuego(juegoRecorrido.id)">x</button> 
             </div>
@@ -53,78 +28,48 @@
       </div>
     </div>
     <div v-else>
-      <VistaJuego :idRecibida="idActual"/>
+      <VistaJuego />
     </div>
+
   </section>
 
 </template>
 
 <script>
 
-  // import Modal      from './Modal.vue'
+  import Modal      from './Modal.vue'
   import VistaJuego from './VistaJuego.vue'
-  import Formulario from './Formulario'
 
   export default  {
     name: 'src-componentes-inicio',
     props: [],
-    beforeMount () {
+    mounted () {
       this.cargarJuegos()
     },
     components:{
       VistaJuego,
-      //Modal,
-      Formulario,
+      Modal,
     },
     data () {
       return {
-        url : 'https://6286f9227864d2883e7c4e53.mockapi.io/listaJuegos/',
-        juegos: [
-        ],
+        // url : 'https://6286f9227864d2883e7c4e53.mockapi.io/listaJuegos/',
+        // juegos: this.$store.state.juegos,
         criterioDeBusquedaNombre:   '',
         idActual: 0,
-        mostrar: false,
+        mostrar: this.$store.state.formularioVisible,
       }
     },
     methods: {
-      /* ------------------------------ */
-      /*         API REST : GET         */
-      /* ------------------------------ */
-      async cargarJuegos() {
-        this.mostrar = false;
-        this.idActual = 0;
-        try {
-          let {data:juegosApi} = await this.axios(this.url)
-          for (var i = 0; i < (juegosApi.length); i++){
-            this.juegos.push(juegosApi[i])
-          }
-        }
-        catch(error) {
-          console.error('Error en getJuegos', error.message)
-        }
-      },
-      cadenaIncluye(cadena1,cadena2){
-        return this.cadenaLimpia(cadena1).includes(this.cadenaLimpia(cadena2))
-      },
-      /* ------------------------------ */
-      /*       API REST : DELETE        */
-      /* ------------------------------ */
-      async borrarJuego(id) {
-        console.log('borrarJuego', id)
 
-        try {
-          let {data:juego} = await this.axios.delete(this.url+id)
-          console.log('AXIOS DELETE juego', id)
-
-          let index = this.juegos.findIndex(game => game.id == juego.id)
-          if(index == -1) throw new Error('juego no encontrado')
-          console.log(index)
-          this.juegos.splice(index,1)
-        }
-        catch(error) {
-          console.error('Error en borrarJuego', error.message)
-        }        
+      cargarJuegos(){
+       this.$store.dispatch('cargarJuegos') // Genera los juegos en pantalla
       },
+      borrarJuego(id){
+        this.$store.dispatch('borrarJuego', id) //borra el juego segun id
+      },
+      accederVista(juegoRecibido){
+        this.$store.dispatch('setJuego', juegoRecibido)
+      },    
       cadenaLimpia(cadena){
         return this.quitarAcentos(cadena.toLowerCase())
       },
@@ -132,13 +77,13 @@
         const acentos = {'á':'a','é':'e','í':'i','ó':'o','ú':'u','Á':'A','É':'E','Í':'I','Ó':'O','Ú':'U'};
         return cadena.split('').map( letra => acentos[letra] || letra).join('').toString();	
       },              
-      accederVista(id){
-        this.idActual = id;
-      }    
+      cadenaIncluye(cadena1,cadena2){
+        return this.cadenaLimpia(cadena1).includes(this.cadenaLimpia(cadena2))
+      },
     },
     computed: {
       juegosFiltrados() {
-        return this.juegos.filter((juego) => {
+        return this.$store.state.juegos.filter((juego) => {
           let nombreJuego      = `${juego.nombre}`
           let busquedaNombre   = this.criterioDeBusquedaNombre;
           let coincide         = true;
@@ -171,7 +116,6 @@
   }
 
   .container-fluid{
-    /* background-color: rgba(14, 13, 82,0.8); */
     background: linear-gradient(to bottom right, red 0%,green 40%,blue 90%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     background-attachment: fixed;
     border-radius: 20px;
@@ -180,7 +124,6 @@
 
   .galeria{
     display: grid;
-    /*grid-template-columns: 3fr 1fr;*/
     grid-auto-rows: 11rem;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 0.5fr));
     margin-top: 1.5rem;
@@ -189,8 +132,6 @@
   .card{
     background-color: #040336;
     border-radius: 20px;
-    /* height: 150px;
-    width: 270px; */
     height: 9rem;
     width: 14rem;
     display: grid;
@@ -199,8 +140,6 @@
   }
 
   .portada{
-    /* height: 150px;
-    width: 270px; */
     height: 9rem;
     width: 14rem;
     border-radius: 20px;
@@ -242,6 +181,5 @@
     height: 10.5rem;
     width: 15.5rem;
   }
-
 </style>
 
