@@ -77,7 +77,7 @@
       <!--CAMPO Y VALIDACIONES-->
 
       <validate tag="div">
-        <label for="portada1">URL PORTADA (opcional)</label>
+        <label for="portada1">FOTO PORTADA (opcional)</label>
         <input
           type="text"
           id="portada1"
@@ -93,7 +93,7 @@
 
       <br>
   
-      <button class="btn btn-success my-3" :disabled="formState.$invalid">ENVIAR</button>
+      <button class="btn btn-success my-3" :disabled="formState.$invalid" >ENVIAR</button>
     </vue-form>
     </div>
   </section>
@@ -141,7 +141,9 @@
           console.error('Error en postUsuario', error.message)
         }
         this.formData = this.getInitialData()
+        this.$store.dispatch('cerrarFormulario') // --> no funciona
         this.formState._reset()
+        /* location.reload() */
       },
     },
     computed: {
@@ -154,6 +156,6 @@
 
 <style scoped lang="css">
   label{
-    color: white
+    color: rgb(0, 0, 0)
   }
 </style>

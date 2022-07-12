@@ -5,33 +5,35 @@
       <div>
         <h2>VIDEOJUEGOS WEB DISPONIBLES</h2>
         <p>Dentro de esta sección podrás visualizar la lista de videojuegos disponibles dentro de la página. Selecciona un juego de tu gusto, al clickearlo te redireccionará hacia una página con la información del juego, y dentro de la misma podrás presionar el botón IR AL JUEGO para comenzar a jugar</p><hr>
-        <button class="btn btn-info mb-3" @click="mostrar=!mostrar">Agregar Juego</button>
-        <div v-show="mostrar"> 
-          <Formulario />
-          <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="formularioJuegoNuevo" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="formularioJuegoNuevo">¿Te gustaria que haya mas juegos? Contanos cual!</h5>
+     
+           
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-info mb-3" @click="mostrarFormulario()" data-toggle="modal" data-target="#formularioNuevoJuego">
+              Recomendanos un juego!
+            </button>
+
+                    <div v-show="mostrar"> 
+                      <!-- Modal -->
+            <div class="modal fade" id="formularioNuevoJuego" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Formulario de Juego Nuevo</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                      ACA VA EL FORM
-                      ACA VA EL FORM 
-                      <Formulario />
-                      ACA VA EL FORM 
-                      ACA VA EL FORM
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-              
+                  <Formulario />
+                  ...
+                  <br>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
+                </div>
               </div>
             </div>
-          </div>-->
+            </div>
         </div>
       </div>
       
@@ -83,7 +85,7 @@
         ],
         criterioDeBusquedaNombre:   '',
         idActual: 0,
-        mostrar: false,
+        mostrar: this.$store.state.formularioVisible,
       }
     },
     methods: {
@@ -134,7 +136,11 @@
       },              
       accederVista(id){
         this.idActual = id;
-      }    
+      },    
+    
+    mostrarFormulario(){
+      this.$store.dispatch('mostrarFormulario')
+    }
     },
     computed: {
       juegosFiltrados() {
@@ -242,6 +248,20 @@
     height: 10.5rem;
     width: 15.5rem;
   }
+  .modal-header {
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #0480be;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+ }
+ .modal-body{
+  text-emphasis-color: black;
+ }
 
 </style>
 

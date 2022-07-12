@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state : {
         // idActual: 0
+        formularioVisible:false,
     },
     actions : {
         // contarDown({commit},cant) {
@@ -32,7 +33,22 @@ export default new Vuex.Store({
         //     //this.idActual = 0;
         //     commit('refrescarId')
         // }        
+        cerrarFormulario({commit}){
+            console.warn('actions -> cerrarFormulario', new Date().toLocaleString)
+            setTimeout(()=>{
+                commit('cerrarFormulario')
 
+            },2000) //esto es un callback
+
+        },
+        mostrarFormulario({commit}){
+            console.warn('actions -> mostrarFormulario', new Date().toLocaleString)
+            setTimeout(()=>{
+                commit('mostrarFormulario')
+
+            },2000) //esto es un callback
+
+        },
 
 
 
@@ -42,6 +58,14 @@ export default new Vuex.Store({
         
     },
     mutations : {
+        cerrarFormulario(state){
+            console.warn('mutations -> cerrarFormulario', new Date().toLocaleString)
+            state.formularioVisible=false
+        },
+        mostrarFormulario(state){
+            console.warn('mutations -> mostrarFormulario', new Date().toLocaleString)
+            state.formularioVisible=true
+        },
         // decrementar(state, cant) {
         //     console.warn('mutations -> decrementar', cant, new Date().toLocaleString())
         //     state.contador -= cant
@@ -49,5 +73,5 @@ export default new Vuex.Store({
         // refrescarId(state) {
         //     state.idActual = 0;
         // }
-    }
+    },
 })
