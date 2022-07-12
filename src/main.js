@@ -6,7 +6,7 @@ import axios from './axios'
 import { router } from  './router'
 import store from './store'
 import './globalMixins'
-
+import './globalFilters'
 Vue.config.productionTip = false
 
 new Vue({

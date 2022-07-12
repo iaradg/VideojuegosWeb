@@ -6,8 +6,6 @@
       <h2>VIDEOJUEGOS WEB DISPONIBLES</h2>
       <p>Dentro de esta sección podrás visualizar la lista de videojuegos disponibles dentro de la página. Selecciona un juego de tu gusto, al clickearlo te redireccionará hacia una página con la información del juego, y dentro de la misma podrás presionar el botón IR AL JUEGO para comenzar a jugar</p><hr>
         
-      <button type="button" class="btn btn-info mb-3 ml-3" @click="cargarJuegos()">cargarJuegos</button>
-      
       <Modal />
       
       <div class="container-fluid">

@@ -4,7 +4,7 @@
     <div class="jumbotron">
 
       <div class="container-fluid contenedorGeneral">
-        <h1><label>{{juego.nombre}}</label></h1>
+        <h1><label>{{juego.nombre | pasarAMayuscula}}</label></h1>
         <hr>
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
@@ -35,7 +35,7 @@
         <hr>
         <div class="container-fluid">
           <h5>DESCRIPCION</h5>
-          <p>{{ juego.descripcion }}</p>
+          <p>{{ juego.descripcion  }}</p>
           <hr>
 
           <button class="btn btn-success botonJugar" @click="goToGame()">IR AL JUEGO</button>
@@ -167,7 +167,6 @@
   }
 
   label{
-    text-transform: uppercase;
     color: rgb(222, 202, 255);
     font-size: 1em;
     line-height: 1;
