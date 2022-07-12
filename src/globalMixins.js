@@ -2,22 +2,16 @@ import Vue from 'vue'
 
 const miMixinGlobal = {
     methods: {
-        // decrementar() {
-        //     //this.contador--
-        //     console.warn('-------------------------------')
-        //     console.warn('dispatch -> decrementar', new Date().toLocaleString())
-        //     this.$store.dispatch('contarDown', 1)
-        // },
-        // incrementar() {
-        //     //this.contador++
-        //     console.warn('-------------------------------')
-        //     console.warn('dispatch -> incrementar', new Date().toLocaleString())
-        //     this.$store.dispatch('contarUp', 1)
-        // }
-        // refrescarId(){
+        // accederVista(idRecibido){
         //   // this.idActual = 0;
-        //   this.$store.dispatch('refreshId')
+        //   this.$store.dispatch('accederVista', idRecibido)
         // }
+        refrescarVista(){
+          this.$store.dispatch('refresh')
+        },
+        cargarJuegos(){
+          this.$store.dispatch('cargarJuegos') // actualiza los juego
+        }
     },
     computed: {
       // mostrarContadorVuex() {

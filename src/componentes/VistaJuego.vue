@@ -3,8 +3,6 @@
   <section class="src-componentes-vista-juego">
     <div class="jumbotron">
 
-      <h1>entrando a componente VISTA JUEGO {{idRecibida}}</h1>
-
       <div class="container-fluid contenedorGeneral">
         <h1><label>{{juego.nombre}}</label></h1>
         <hr>
@@ -39,24 +37,22 @@
           <h5>DESCRIPCION</h5>
           <p>{{ juego.descripcion }}</p>
           <hr>
-            <div class="row">
-              <div class="col-6">
-                <button class="btn btn-success botonJugar" @click="goToGame()">IR AL JUEGO</button>
-              </div>
-              <div class="col-6">
-                <div class="alert alert-warning calificacion">
-                  <button class="btn btn-warning mr-3" @click="calificar()">CALIFICAR</button>
-                  <label v-if="mgLocal == 0">El juego seleccionado aún no ha sido calificado.</label>
-                  <label v-else>Cantidad de Me Gusta: {{mgLocal}}</label>
-                  <!-- <label v-else>Cantidad de Me Gusta: {{mgLocal}} :style="{'color': funcion()}"</label> -->
-                  <!-- <button class="btn btn-danger"  onclick="alert('En un futuro este botón, te derivará a un formulario, el cual te permitirá reportar el juego.')">REPORTAR</button> 
-                  :style
-                  vuex
-                  filtro de datos por vista
-                  -->
-                </div><br>
-              </div>
-            </div>
+
+          <button class="btn btn-success botonJugar" @click="goToGame()">IR AL JUEGO</button>
+          <br>
+          <br>
+
+            <div class="alert alert-warning calificacion" :class="calidadJuego(mgLocal)">
+              <button class="btn btn-primary mr-3" @click="calificar()">CALIFICAR</button>
+              <label v-if="mgLocal == 0">El juego seleccionado aún no ha sido calificado.</label>
+              <label v-else>Cantidad de Me Gusta: {{this.$store.state.juegoActual.cantMG}}</label>
+              <!-- <label v-else>Cantidad de Me Gusta: {{mgLocal}} :style="{'color': funcion()}"</label> -->
+              <!-- <button class="btn btn-danger"  onclick="alert('En un futuro este botón, te derivará a un formulario, el cual te permitirá reportar el juego.')">REPORTAR</button> 
+              :style
+              vuex
+              filtro de datos por vista
+              -->
+            </div><br>
         </div>
       </div>
     </div>
@@ -68,37 +64,24 @@
 
   export default  {
     name: 'src-componentes-vista-juego',
-    props: ['idRecibida'],
+    props: [],
     mounted () {
-      this.obtenerJuegoById() 
     },
     data () {
       return {
         url : 'https://6286f9227864d2883e7c4e53.mockapi.io/listaJuegos/',
-        juego: {},
-        mgLocal: 0,
-
+        juego: this.$store.state.juegoActual,
+        mgLocal: this.$store.state.juegoActual.cantMG,
       }
     },
     methods: {
-      async obtenerJuegoById(){
-        try {
-        let {data:juego} = await this.axios.get(this.url+this.idRecibida)
-        this.juego = {...juego};
-        this.mgLocal = this.juego.cantMG;
-        }
-        catch(error) {
-          console.error('Error en goToGame', error.message)
-        }
-      },
       goToGame(){
         window.open(this.juego.url, '_blank');
       },
-      async calificar(){
+      calificar(){
         let gustaJuego = confirm("¿Te gusto el juego?");
         if (gustaJuego) {
-          alert("Gracias por la calificacion!")
-
+          alert("¡Gracias por la calificacion!")
           this.mgLocal++
           
           let juegoNew = {
@@ -110,19 +93,31 @@
             portada3 :     this.juego.portada3,
             cantMG :       this.mgLocal
           }
-          try {
-          let {data:usuario} = await this.axios.put(this.url+this.idRecibida, juegoNew, {'content-type':'application/json'} )
-          console.log('AXIOS PUT usuario', usuario)
-        }
-        catch(error) {
-          console.error('Error en putUsuario', error.message)
-        }
+          this.$store.dispatch('calificarJuego', juegoNew) // actualiza el juego
+          // this.cargarJuegos()
         }
         else{
           let valorRecibido = prompt("¿Que podemos mejorar?");
           console.log("Comentario:",valorRecibido)
         }
       },
+      calidadJuego(cantMG){
+        let retorno = {}
+        if(cantMG > 9){
+          retorno = {
+            buenJuego: true
+          }
+        }else if (cantMG > 4){
+          retorno = {
+            medioJuego: true
+          }
+        }else if (cantMG > 0){
+          retorno = {
+            malJuego: true
+          }
+        } 
+        return retorno;
+      }
     } 
 }
 
@@ -142,24 +137,33 @@
     background:#202a46;
     background-attachment: fixed;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px;
     border-style: solid;
     border-color: #1a2238;
   }
 
-
   .calificacion{
-    box-sizing: content-box;
+    /* box-sizing: content-box; */
+    /* float: right; */
+    /* width: 100%; */
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     background-color: rgb(66, 66, 66);
-    border-radius: 20px;
+    border-color: rgb(66, 66, 66);
     position:relative;
     padding: 10px;
-    float: right;
-    width: 100%;
     justify-content: center;    
+  }
+
+  .buenJuego{
+    background-color: rgb(61, 172, 33);
+}
+  .medioJuego{
+    background-color: rgb(126, 91, 16);
+  }
+  .malJuego{
+    background-color: rgb(165, 0, 0);
   }
 
   label{
@@ -167,6 +171,7 @@
     color: rgb(222, 202, 255);
     font-size: 1em;
     line-height: 1;
+    font: oblique bold 120% cursive;
   }
 
   button{
@@ -184,13 +189,9 @@
     bottom: 0.2em;
   }
 
-
-
   .descripcion{
     margin-top: 1rem;
   } 
-
-
 
   h1{
     padding: 2px;
